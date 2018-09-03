@@ -1,6 +1,6 @@
 {
   "name": "chrome-multicast-dns",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "description": "Low level multicast-dns implementation in pure javascript",
   "main": "index.js",
   "scripts": {
