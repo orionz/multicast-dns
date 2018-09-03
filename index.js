@@ -41,7 +41,7 @@ module.exports = function (opts) {
   var port = typeof opts.port === 'number' ? opts.port : undefined
   var type = opts.type || 'udp4'
   var ip = opts.ip || opts.host || (type === 'udp4' ? '224.0.0.251' : null)
-  var me = {address: ip, port: port}
+//  var me = {address: ip, port: port}
   var memberships = {}
   var destroyed = false
   var interval = null
@@ -78,7 +78,7 @@ module.exports = function (opts) {
   })
 
   socket.on('listening', function () {
-    if (!port) port = me.port = socket.address().port
+    if (!port) port = socket.address().port
     if (opts.multicast !== false) {
       that.update()
       interval = setInterval(that.update, 5000)
@@ -111,7 +111,7 @@ module.exports = function (opts) {
   that.send = function (value, rinfo, cb) {
     if (typeof rinfo === 'function') return that.send(value, null, rinfo)
     if (!cb) cb = noop
-    if (!rinfo) rinfo = me
+    if (!rinfo) rinfo = { address: ip, port: 5353 } // where to send - my ip (multipass, default ip)
 
     bind(onbind)
 
